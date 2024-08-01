@@ -1,8 +1,9 @@
 package com.ohgiraffers.codingpikka_admin.notice.repository;
 
+import com.ohgiraffers.codingpikka_admin.notice.entity.NoticeEntity;
+import org.springframework.data.jpa.repository.JpaRepository;
+import java.util.List;
 
-import org.springframework.stereotype.Repository;
-
-@Repository
-public class NoticeRepository {
+public interface NoticeRepository extends JpaRepository<NoticeEntity, Long> {
+    List<NoticeEntity> findAllByOrderByCreatedAtDesc();
 }
