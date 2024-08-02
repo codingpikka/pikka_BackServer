@@ -26,7 +26,7 @@ public class NoticeService {
                 .collect(Collectors.toList());
     }
 
-    public NoticeDTO getNotice(Long notice_id) {
+    public NoticeDTO getNotice(Integer notice_id) {
         return noticeRepository.findById(notice_id)
                 .map(this::convertToDTO)
                 .orElseThrow(() -> new NoSuchElementException("Notice not found"));
@@ -38,7 +38,7 @@ public class NoticeService {
         return convertToDTO(noticeRepository.save(entity));
     }
 
-    public NoticeDTO updateNotice(Long notice_id, NoticeDTO noticeDTO) {
+    public NoticeDTO updateNotice(Integer notice_id, NoticeDTO noticeDTO) {
         return noticeRepository.findById(notice_id)
                 .map(entity -> {
                     entity.setTitle(noticeDTO.getTitle());
@@ -49,7 +49,7 @@ public class NoticeService {
                 .orElseThrow(() -> new NoSuchElementException("Notice not found with id: " + notice_id));
     }
 
-    public void deleteNotice(Long notice_id) {
+    public void deleteNotice(Integer notice_id) {
         noticeRepository.deleteById(notice_id);
     }
 

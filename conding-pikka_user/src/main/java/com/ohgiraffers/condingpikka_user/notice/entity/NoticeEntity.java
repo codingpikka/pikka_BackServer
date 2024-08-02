@@ -1,6 +1,7 @@
 package com.ohgiraffers.condingpikka_user.notice.entity;
 
 import jakarta.persistence.*;
+
 import java.time.LocalDateTime;
 
 @Entity
@@ -8,7 +9,7 @@ import java.time.LocalDateTime;
 public class NoticeEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private Integer id;
 
     @Column(nullable = false)
     private String title;
@@ -24,7 +25,7 @@ public class NoticeEntity {
 
     public NoticeEntity() {}
 
-    public NoticeEntity(Long id, String title, String content, LocalDateTime createdAt, LocalDateTime updatedAt) {
+    public NoticeEntity(Integer id, String title, String content, LocalDateTime createdAt, LocalDateTime updatedAt) {
         this.id = id;
         this.title = title;
         this.content = content;
@@ -32,12 +33,11 @@ public class NoticeEntity {
         this.updatedAt = updatedAt;
     }
 
-    // Getters and Setters
-    public Long getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 

@@ -1,6 +1,7 @@
 package com.ohgiraffers.codingpikka_admin.notice.entity;
 
 import jakarta.persistence.*;
+
 import java.time.LocalDateTime;
 
 @Entity
@@ -8,7 +9,7 @@ import java.time.LocalDateTime;
 public class NoticeEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long notice_id;
+    private Integer notice_id;
 
     @Column(nullable = false)
     private String title;
@@ -24,7 +25,7 @@ public class NoticeEntity {
 
     public NoticeEntity() {}
 
-    public NoticeEntity(Long notice_id, String title, String content, LocalDateTime createdAt, LocalDateTime updatedAt) {
+    public NoticeEntity(Integer notice_id, String title, String content, LocalDateTime createdAt, LocalDateTime updatedAt) {
         this.notice_id = notice_id;
         this.title = title;
         this.content = content;
@@ -32,11 +33,11 @@ public class NoticeEntity {
         this.updatedAt = updatedAt;
     }
 
-    public Long getNotice_id() {
+    public Integer getNotice_id() {
         return notice_id;
     }
 
-    public void setNotice_id(Long notice_id) {
+    public void setNotice_id(Integer notice_id) {
         this.notice_id = notice_id;
     }
 

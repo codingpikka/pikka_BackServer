@@ -7,6 +7,6 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 @Repository
-public interface NoticeRepository extends JpaRepository<NoticeEntity, Long> {
+public interface NoticeRepository extends JpaRepository<NoticeEntity, Integer> {
     List<NoticeEntity> findAllByOrderByCreatedAtDesc();
 }

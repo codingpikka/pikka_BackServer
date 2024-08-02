@@ -25,7 +25,7 @@ public class NoticeController {
     }
 
     @GetMapping("admin/notices/{id}")
-    public ResponseEntity<NoticeDTO> getNotice(@PathVariable Long id) {
+    public ResponseEntity<NoticeDTO> getNotice(@PathVariable Integer id) {
         return ResponseEntity.ok(noticeService.getNotice(id));
     }
 
@@ -35,12 +35,12 @@ public class NoticeController {
     }
 
     @PutMapping("admin/notices/{id}")
-    public ResponseEntity<NoticeDTO> updateNotice(@PathVariable Long id, @RequestBody NoticeDTO noticeDTO) {
+    public ResponseEntity<NoticeDTO> updateNotice(@PathVariable Integer id, @RequestBody NoticeDTO noticeDTO) {
         return ResponseEntity.ok(noticeService.updateNotice(id, noticeDTO));
     }
 
     @DeleteMapping("admin/notices/{id}")
-    public ResponseEntity<Void> deleteNotice(@PathVariable Long id) {
+    public ResponseEntity<Void> deleteNotice(@PathVariable Integer id) {
         noticeService.deleteNotice(id);
         return ResponseEntity.noContent().build();
     }
