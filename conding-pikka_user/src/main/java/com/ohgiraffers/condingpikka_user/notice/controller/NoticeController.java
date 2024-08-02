@@ -4,7 +4,10 @@ import com.ohgiraffers.condingpikka_user.notice.model.NoticeDTO;
 import com.ohgiraffers.condingpikka_user.notice.service.NoticeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
@@ -24,7 +27,7 @@ public class NoticeController {
     }
 
     @GetMapping("notices/{id}")
-    public ResponseEntity<NoticeDTO> getNotice(@PathVariable Long id) {
+    public ResponseEntity<NoticeDTO> getNotice(@PathVariable Integer id) {
         return ResponseEntity.ok(noticeService.getNotice(id));
     }
 }

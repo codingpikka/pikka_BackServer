@@ -25,7 +25,7 @@ public class NoticeService {
                 .collect(Collectors.toList());
     }
 
-    public NoticeDTO getNotice(Long id) {
+    public NoticeDTO getNotice(Integer id) {
         return noticeRepository.findById(id)
                 .map(this::convertToDTO)
                 .orElseThrow(() -> new NoSuchElementException("Notice not found with id: " + id));

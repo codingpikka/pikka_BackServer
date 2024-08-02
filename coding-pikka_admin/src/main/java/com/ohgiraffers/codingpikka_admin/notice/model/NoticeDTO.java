@@ -3,7 +3,7 @@ package com.ohgiraffers.codingpikka_admin.notice.model;
 import java.time.LocalDateTime;
 
 public class NoticeDTO {
-    private Long notice_id;
+    private Integer notice_id;
     private String title;
     private String content;
     private LocalDateTime createdAt;
@@ -12,7 +12,7 @@ public class NoticeDTO {
     public NoticeDTO() {
     }
 
-    public NoticeDTO(Long notice_id, String title, String content, LocalDateTime createdAt, LocalDateTime updatedAt) {
+    public NoticeDTO(Integer notice_id, String title, String content, LocalDateTime createdAt, LocalDateTime updatedAt) {
         this.notice_id = notice_id;
         this.title = title;
         this.content = content;
@@ -20,11 +20,11 @@ public class NoticeDTO {
         this.updatedAt = updatedAt;
     }
 
-    public Long getNotice_id() {
+    public Integer getNotice_id() {
         return notice_id;
     }
 
-    public void setNotice_id(Long notice_id) {
+    public void setNotice_id(Integer notice_id) {
         this.notice_id = notice_id;
     }
 

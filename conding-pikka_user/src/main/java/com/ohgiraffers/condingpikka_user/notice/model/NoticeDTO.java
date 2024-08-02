@@ -3,7 +3,7 @@ package com.ohgiraffers.condingpikka_user.notice.model;
 import java.time.LocalDateTime;
 
 public class NoticeDTO {
-    private Long id;
+    private Integer id;
     private String title;
     private String content;
     private LocalDateTime createdAt;
@@ -11,7 +11,7 @@ public class NoticeDTO {
 
     public NoticeDTO() {}
 
-    public NoticeDTO(Long id, String title, String content, LocalDateTime createdAt, LocalDateTime updatedAt) {
+    public NoticeDTO(Integer id, String title, String content, LocalDateTime createdAt, LocalDateTime updatedAt) {
         this.id = id;
         this.title = title;
         this.content = content;
@@ -19,12 +19,11 @@ public class NoticeDTO {
         this.updatedAt = updatedAt;
     }
 
-    // Getters and Setters
-    public Long getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
