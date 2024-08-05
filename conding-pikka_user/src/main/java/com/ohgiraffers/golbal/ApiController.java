@@ -13,7 +13,7 @@ import java.util.Map;
 @RequestMapping("/api")
 public class ApiController {
 
-    @GetMapping("/hello")
+    @GetMapping("/hellow")
     public Map<String, String> helloworld(){
 
         HashMap<String, String> map = new HashMap<>();

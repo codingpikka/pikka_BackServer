@@ -4,19 +4,29 @@ import org.springframework.web.multipart.MultipartFile;
 
 public class PostDTO {
 
+    private Integer Id;
     private String title;
-    private MultipartFile imageFile;
+    private String imageFile;
     private String description;
     private String content;
 
     public PostDTO() {
     }
 
-    public PostDTO(String title, MultipartFile imageFile, String description, String content) {
+    public PostDTO(Integer id, String title, String imageFile, String description, String content) {
+        Id = id;
         this.title = title;
         this.imageFile = imageFile;
         this.description = description;
         this.content = content;
+    }
+
+    public Integer getId() {
+        return Id;
+    }
+
+    public void setId(Integer id) {
+        Id = id;
     }
 
     public String getTitle() {
@@ -27,11 +37,11 @@ public class PostDTO {
         this.title = title;
     }
 
-    public MultipartFile getImageFile() {
+    public String getImageFile() {
         return imageFile;
     }
 
-    public void setImageFile(MultipartFile imageFile) {
+    public void setImageFile(String imageFile) {
         this.imageFile = imageFile;
     }
 
@@ -54,7 +64,8 @@ public class PostDTO {
     @Override
     public String toString() {
         return "PostDTO{" +
-                "title='" + title + '\'' +
+                "Id='" + Id + '\'' +
+                ", title='" + title + '\'' +
                 ", imageFile=" + imageFile +
                 ", description='" + description + '\'' +
                 ", content='" + content + '\'' +
