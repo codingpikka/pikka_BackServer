@@ -1,8 +1,44 @@
 package com.ohgiraffers.codingpikka_admin.questions.controller;
 
+import com.ohgiraffers.codingpikka_admin.questions.model.QuestionsDTO;
+import com.ohgiraffers.codingpikka_admin.questions.service.QuestionsService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
 
-import org.springframework.stereotype.Controller;
+import java.util.List;
 
-@Controller
+@RestController
+@RequestMapping("/insert/qna-list")
 public class QuestionsController {
+    private final QuestionsService questionsService;
+
+    @Autowired
+    public QuestionsController(QuestionsService questionsService) {
+        this.questionsService = questionsService;
+    }
+
+    @GetMapping
+    public ResponseEntity<List<QuestionsDTO>> getAllQna() {
+        List<QuestionsDTO> qnaList = questionsService.getAllQuestions();
+        return ResponseEntity.ok(qnaList);
+    }
+
+    @GetMapping("/{contactId}")
+    public ResponseEntity<QuestionsDTO> getQnaById(@PathVariable("contactId") Long contactId) {
+        QuestionsDTO qna = questionsService.getQuestionById(contactId);
+        return ResponseEntity.ok(qna);
+    }
+
+    @PutMapping("/{contactId}/answer")
+    public ResponseEntity<QuestionsDTO> submitAnswer(@PathVariable("contactId") Long contactId, @RequestBody QuestionsDTO questionsDTO) {
+        QuestionsDTO updatedQna = questionsService.submitAnswer(contactId, questionsDTO);
+        return ResponseEntity.ok(updatedQna);
+    }
+
+    @DeleteMapping("/{contactId}")
+    public ResponseEntity<Void> deleteQna(@PathVariable("contactId") Long contactId) {
+        questionsService.deleteQna(contactId);
+        return ResponseEntity.noContent().build();
+    }
 }
