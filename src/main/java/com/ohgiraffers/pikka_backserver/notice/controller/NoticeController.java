@@ -46,4 +46,5 @@ public class NoticeController {
         noticeService.deleteNotice(id);
         return ResponseEntity.ok().build();
     }
+    //테스트용
 }
