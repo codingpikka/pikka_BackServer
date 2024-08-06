@@ -1,17 +1,16 @@
 package com.ohgiraffers.pikka_backserver.notice.entity;
 
-
 import jakarta.persistence.*;
 
 import java.time.LocalDateTime;
 
 @Entity
-@Table(name = "notices")
+@Table(name = "tbl_notification;")
 public class NoticeEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
+    private Integer noticeId;
 
     @Column(nullable = false)
     private String title;
@@ -28,19 +27,19 @@ public class NoticeEntity {
     public NoticeEntity() {}
 
     public NoticeEntity(Integer id, String title, String content, LocalDateTime createdAt, LocalDateTime updatedAt) {
-        this.id = id;
+        this.noticeId = id;
         this.title = title;
         this.content = content;
         this.createdAt = createdAt;
         this.updatedAt = updatedAt;
     }
 
-    public Integer getId() {
-        return id;
+    public Integer getNoticeId() {
+        return noticeId;
     }
 
-    public void setId(Integer id) {
-        this.id = id;
+    public void setNoticeId(Integer id) {
+        this.noticeId = id;
     }
 
     public String getTitle() {
