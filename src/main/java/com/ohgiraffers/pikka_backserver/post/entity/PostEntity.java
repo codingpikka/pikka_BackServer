@@ -14,24 +14,20 @@ public class PostEntity {
     @Column(name = "post_title")
     private String title;
 
-    @Column(name = "post_imageFile")
-    private String imageName;
+    @Column(name = "post_thumbnail")
+    private String thumbnail;
 
-    @Column(name = "description")
-    private String description;
-
-    @Column(name = "content")
+    @Column(name = "post_content")
     private String content;
 
 
     public PostEntity() {
     }
 
-    public PostEntity(Integer id, String title, String imageName, String description, String content) {
+    public PostEntity(Integer id, String title, String thumbnail, String content) {
         this.id = id;
         this.title = title;
-        this.imageName = imageName;
-        this.description = description;
+        this.thumbnail = thumbnail;
         this.content = content;
     }
 
@@ -51,20 +47,12 @@ public class PostEntity {
         this.title = title;
     }
 
-    public String getImageName() {
-        return imageName;
+    public String getThumbnail() {
+        return thumbnail;
     }
 
-    public void setImageName(String imageName) {
-        this.imageName = imageName;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
+    public void setThumbnail(String thumbnail) {
+        this.thumbnail = thumbnail;
     }
 
     public String getContent() {
@@ -80,8 +68,7 @@ public class PostEntity {
         return "PostEntity{" +
                 "id=" + id +
                 ", title='" + title + '\'' +
-                ", imageName='" + imageName + '\'' +
-                ", description='" + description + '\'' +
+                ", thumbnail='" + thumbnail + '\'' +
                 ", content='" + content + '\'' +
                 '}';
     }

@@ -9,7 +9,6 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/insert/qna-list")
 public class QuestionsController {
     private QuestionsService questionsService;
 
@@ -18,27 +17,35 @@ public class QuestionsController {
         this.questionsService = questionsService;
     }
 
-    @GetMapping
+    // 관리자용 엔드포인트
+    @GetMapping("/insert/qna-list")
     public ResponseEntity<List<QuestionsDTO>> getAllQna(){
         List<QuestionsDTO> qnaList = questionsService.getAllQuestions();
         return ResponseEntity.ok(qnaList);
     }
 
-    @GetMapping("/{contactId}")
+    @GetMapping("/insert/qna-list/{contactId}")
     public ResponseEntity<QuestionsDTO> getQnaById(@PathVariable("contactId") Long contactId){
         QuestionsDTO qna = questionsService.getQuestionById(contactId);
         return ResponseEntity.ok(qna);
     }
 
-    @PutMapping("{contactId}/answer")
+    @PutMapping("/insert/qna-list/{contactId}/answer")
     public ResponseEntity<QuestionsDTO> submitAnswer(@PathVariable("contactId") Long contactId, @RequestBody QuestionsDTO questionsDTO){
         QuestionsDTO updatedQna = questionsService.submitAnswer(contactId, questionsDTO);
         return ResponseEntity.ok(updatedQna);
     }
 
-    @DeleteMapping("/{contactId}")
+    @DeleteMapping("/insert/qna-list/{contactId}")
     public ResponseEntity<Void> deleteQna(@PathVariable("contactId") Long contactId){
         questionsService.deleteQna(contactId);
         return ResponseEntity.noContent().build();
+    }
+
+    // 유저용 엔드포인트
+    @PostMapping("/inquiry")
+    public ResponseEntity<QuestionsDTO> createUserQuestion(@RequestBody QuestionsDTO questionsDTO) {
+        QuestionsDTO createdQuestion = questionsService.addQuestion(questionsDTO);
+        return ResponseEntity.ok(createdQuestion);
     }
 }

@@ -5,18 +5,16 @@ public class PostDTO {
 
     private Integer Id;
     private String title;
-    private String imageFile;
-    private String description;
+    private String thumbnail;
     private String content;
 
     public PostDTO() {
     }
 
-    public PostDTO(Integer id, String title, String imageFile, String description, String content) {
+    public PostDTO(Integer id, String title, String thumbnail, String content) {
         Id = id;
         this.title = title;
-        this.imageFile = imageFile;
-        this.description = description;
+        this.thumbnail = thumbnail;
         this.content = content;
     }
 
@@ -36,20 +34,12 @@ public class PostDTO {
         this.title = title;
     }
 
-    public String getImageFile() {
-        return imageFile;
+    public String getThumbnail() {
+        return thumbnail;
     }
 
-    public void setImageFile(String imageFile) {
-        this.imageFile = imageFile;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
+    public void setThumbnail(String thumbnail) {
+        this.thumbnail = thumbnail;
     }
 
     public String getContent() {
@@ -65,8 +55,7 @@ public class PostDTO {
         return "PostDTO{" +
                 "Id=" + Id +
                 ", title='" + title + '\'' +
-                ", imageFile='" + imageFile + '\'' +
-                ", description='" + description + '\'' +
+                ", thumbnail='" + thumbnail + '\'' +
                 ", content='" + content + '\'' +
                 '}';
     }

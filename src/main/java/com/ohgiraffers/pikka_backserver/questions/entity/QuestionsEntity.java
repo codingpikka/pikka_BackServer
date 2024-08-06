@@ -7,20 +7,44 @@ import jakarta.persistence.*;
 public class QuestionsEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "contact_id")
     private Long contactId;
-    private Long userId;
-    private String userName;
-    private String contactType;
-    private String contactContents;
-    private String contactPostedDate;
-    private Long adminId;
-    private String adminName;
-    private String responseTitle;
-    private String responseContents;
-    private String responsePostedDate;
-    private String responseStatus;
-    private String answerContent;
 
+    @Column(name = "user_id")
+    private Long userId;
+
+    @Column(name = "user_name")
+    private String userName;
+
+    @Column(name = "contact_type")
+    private String contactType;
+
+    @Column(name = "contact_contents")
+    private String contactContents;
+
+    @Column(name = "contact_posted_date")
+    private String contactPostedDate;
+
+    @Column(name = "admin_id")
+    private Long adminId;
+
+    @Column(name = "admin_name")
+    private String adminName;
+
+    @Column(name = "response_title")
+    private String responseTitle;
+
+    @Column(name = "response_contents")
+    private String responseContents;
+
+    @Column(name = "response_posted_date")
+    private String responsePostedDate;
+
+    @Column(name = "response_status")
+    private String responseStatus;
+
+    @Column(name = "answer_content")
+    private String answerContent;
 
     public QuestionsEntity() {
     }

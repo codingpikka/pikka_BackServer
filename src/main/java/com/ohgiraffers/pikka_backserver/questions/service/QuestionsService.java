@@ -26,6 +26,7 @@ public class QuestionsService {
         return convertToDTO(questionsEntity);
     }
 
+    // 새로운 질문을 저장하는 메서드 추가
     public QuestionsDTO addQuestion(QuestionsDTO questionsDTO) {
         QuestionsEntity questionsEntity = convertToEntity(questionsDTO);
         QuestionsEntity savedEntity = questionsRepository.save(questionsEntity);
