@@ -4,7 +4,7 @@ import java.time.LocalDateTime;
 
 public class NoticeDTO {
 
-    private Integer id;
+    private Integer noticeId;
     private String title;
     private String content;
     private LocalDateTime createdAt;
@@ -13,20 +13,20 @@ public class NoticeDTO {
     public NoticeDTO() {
     }
 
-    public NoticeDTO(Integer id, String title, String content, LocalDateTime createdAt, LocalDateTime updatedAt) {
-        this.id = id;
+    public NoticeDTO(Integer noticeId, String title, String content, LocalDateTime createdAt, LocalDateTime updatedAt) {
+        this.noticeId = noticeId;
         this.title = title;
         this.content = content;
         this.createdAt = createdAt;
         this.updatedAt = updatedAt;
     }
 
-    public Integer getId() {
-        return id;
+    public Integer getNoticeId() {  // 변경됨: getId -> getNoticeId
+        return noticeId;
     }
 
-    public void setId(Integer id) {
-        this.id = id;
+    public void setNoticeId(Integer id) {  // 변경됨: setId -> setNoticeId
+        this.noticeId = id;
     }
 
     public String getTitle() {
@@ -64,7 +64,7 @@ public class NoticeDTO {
     @Override
     public String toString() {
         return "NoticeDTO{" +
-                "id=" + id +
+                "noticeId=" + noticeId +  // 변경됨: id -> noticeId
                 ", title='" + title + '\'' +
                 ", content='" + content + '\'' +
                 ", createdAt=" + createdAt +
