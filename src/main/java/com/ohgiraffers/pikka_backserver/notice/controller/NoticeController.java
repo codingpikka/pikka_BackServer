@@ -19,7 +19,6 @@ public class NoticeController {
         this.noticeService = noticeService;
     }
 
-    // 일반 사용자 및 관리자용 엔드포인트
     @GetMapping
     public ResponseEntity<List<NoticeDTO>> getAllNotices() {
         return ResponseEntity.ok(noticeService.getAllNotices());
@@ -30,7 +29,6 @@ public class NoticeController {
         return ResponseEntity.ok(noticeService.getNotice(id));
     }
 
-    // 관리자용 엔드포인트
     @PostMapping
     public ResponseEntity<NoticeDTO> createNotice(@RequestBody NoticeDTO noticeDTO) {
         return ResponseEntity.ok(noticeService.createNotice(noticeDTO));
