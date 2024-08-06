@@ -5,14 +5,12 @@ import com.ohgiraffers.pikka_backserver.post.model.PostDTO;
 import com.ohgiraffers.pikka_backserver.post.service.PostService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.HashMap;
 import java.util.Map;
 
-@Controller
+@RestController
 @RequestMapping("/api")
 public class PostController {
 
@@ -30,7 +28,7 @@ public class PostController {
     }
 
     @PostMapping("/post")
-    public Map<String, String> post(PostDTO postDTO){
+    public Map<String, String> post(@RequestBody PostDTO postDTO){
         HashMap<String, String> map = new HashMap<>();
         postService.add(postDTO);
         return map;
