@@ -22,7 +22,7 @@ public class NoticeService {
     }
 
     public List<NoticeDTO> getAllNotices() {
-        return noticeRepository.findAllByOrderByCreatedAtDesc().stream()
+        return noticeRepository.findAllByOrderByNotiCreateAtDesc().stream()
                 .map(this::convertToDTO)
                 .collect(Collectors.toList());
     }
@@ -35,7 +35,7 @@ public class NoticeService {
 
     public NoticeDTO createNotice(NoticeDTO noticeDTO) {
         NoticeEntity noticeEntity = convertToEntity(noticeDTO);
-        noticeEntity.setCreatedAt(LocalDateTime.now());
+        noticeEntity.setNotiCreateAt(LocalDateTime.now());
         NoticeEntity savedEntity = noticeRepository.save(noticeEntity);
         return convertToDTO(savedEntity);
     }
@@ -44,9 +44,8 @@ public class NoticeService {
         NoticeEntity existingNotice = noticeRepository.findById(id)
                 .orElseThrow(() -> new NoSuchElementException("Notice not found with id: " + id));
 
-        existingNotice.setTitle(noticeDTO.getTitle());
-        existingNotice.setContent(noticeDTO.getContent());
-        existingNotice.setUpdatedAt(LocalDateTime.now());
+        updateEntityFromDTO(existingNotice, noticeDTO);
+        existingNotice.setNotiModiDate(LocalDateTime.now());
 
         NoticeEntity updatedEntity = noticeRepository.save(existingNotice);
         return convertToDTO(updatedEntity);
@@ -61,18 +60,31 @@ public class NoticeService {
 
     private NoticeDTO convertToDTO(NoticeEntity noticeEntity) {
         return new NoticeDTO(
-                noticeEntity.getNoticeId(),
-                noticeEntity.getTitle(),
-                noticeEntity.getContent(),
-                noticeEntity.getCreatedAt(),
-                noticeEntity.getUpdatedAt()
+                noticeEntity.getNotiId(),
+                noticeEntity.getAdminId(),
+                noticeEntity.getAdminName(),
+                noticeEntity.getNotiTitle(),
+                noticeEntity.getNotiContents(),
+                noticeEntity.getNotiCreateAt(),
+                noticeEntity.getNotiStartDate(),
+                noticeEntity.getNotiCloseDate(),
+                noticeEntity.getNotiModiDate()
         );
     }
 
     private NoticeEntity convertToEntity(NoticeDTO noticeDTO) {
         NoticeEntity entity = new NoticeEntity();
-        entity.setTitle(noticeDTO.getTitle());
-        entity.setContent(noticeDTO.getContent());
+        updateEntityFromDTO(entity, noticeDTO);
         return entity;
+    }
+
+    private void updateEntityFromDTO(NoticeEntity entity, NoticeDTO dto) {
+        entity.setAdminId(dto.getAdminId());
+        entity.setAdminName(dto.getAdminName());
+        entity.setNotiTitle(dto.getNotiTitle());
+        entity.setNotiContents(dto.getNotiContents());
+        entity.setNotiStartDate(dto.getNotiStartDate());
+        entity.setNotiCloseDate(dto.getNotiCloseDate());
+        // notiCreateAt과 notiModiDate는 서비스 로직에서 설정하므로 여기서는 설정하지 않습니다.
     }
 }

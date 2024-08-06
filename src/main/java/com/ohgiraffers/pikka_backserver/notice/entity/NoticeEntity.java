@@ -1,76 +1,126 @@
 package com.ohgiraffers.pikka_backserver.notice.entity;
 
 import jakarta.persistence.*;
-
 import java.time.LocalDateTime;
 
 @Entity
-@Table(name = "tbl_notification;")
+@Table(name = "tbl_notification")
 public class NoticeEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer noticeId;
+    @Column(name = "noti_id")
+    private Integer notiId;
 
-    @Column(nullable = false)
-    private String title;
+    @Column(name = "admin_id")
+    private Integer adminId;
 
-    @Column(nullable = false, length = 1000)
-    private String content;
+    @Column(name = "admin_name")
+    private String adminName;
 
-    @Column(nullable = false)
-    private LocalDateTime createdAt;
+    @Column(name = "noti_title", nullable = false)
+    private String notiTitle;
 
-    @Column
-    private LocalDateTime updatedAt;
+    @Column(name = "noti_contents", nullable = false, length = 1000)
+    private String notiContents;
+
+    @Column(name = "noti_createat", nullable = false)
+    private LocalDateTime notiCreateAt;
+
+    @Column(name = "noti_start_date")
+    private LocalDateTime notiStartDate;
+
+    @Column(name = "noti_close_date")
+    private LocalDateTime notiCloseDate;
+
+    @Column(name = "noti_modi_date")
+    private LocalDateTime notiModiDate;
 
     public NoticeEntity() {}
 
-    public NoticeEntity(Integer id, String title, String content, LocalDateTime createdAt, LocalDateTime updatedAt) {
-        this.noticeId = id;
-        this.title = title;
-        this.content = content;
-        this.createdAt = createdAt;
-        this.updatedAt = updatedAt;
+    public NoticeEntity(Integer notiId, Integer adminId, String adminName, String notiTitle, String notiContents,
+                        LocalDateTime notiCreateAt, LocalDateTime notiStartDate, LocalDateTime notiCloseDate,
+                        LocalDateTime notiModiDate) {
+        this.notiId = notiId;
+        this.adminId = adminId;
+        this.adminName = adminName;
+        this.notiTitle = notiTitle;
+        this.notiContents = notiContents;
+        this.notiCreateAt = notiCreateAt;
+        this.notiStartDate = notiStartDate;
+        this.notiCloseDate = notiCloseDate;
+        this.notiModiDate = notiModiDate;
     }
 
-    public Integer getNoticeId() {
-        return noticeId;
+    public Integer getNotiId() {
+        return notiId;
     }
 
-    public void setNoticeId(Integer id) {
-        this.noticeId = id;
+    public void setNotiId(Integer notiId) {
+        this.notiId = notiId;
     }
 
-    public String getTitle() {
-        return title;
+    public Integer getAdminId() {
+        return adminId;
     }
 
-    public void setTitle(String title) {
-        this.title = title;
+    public void setAdminId(Integer adminId) {
+        this.adminId = adminId;
     }
 
-    public String getContent() {
-        return content;
+    public String getAdminName() {
+        return adminName;
     }
 
-    public void setContent(String content) {
-        this.content = content;
+    public void setAdminName(String adminName) {
+        this.adminName = adminName;
     }
 
-    public LocalDateTime getCreatedAt() {
-        return createdAt;
+    public String getNotiTitle() {
+        return notiTitle;
     }
 
-    public void setCreatedAt(LocalDateTime createdAt) {
-        this.createdAt = createdAt;
+    public void setNotiTitle(String notiTitle) {
+        this.notiTitle = notiTitle;
     }
 
-    public LocalDateTime getUpdatedAt() {
-        return updatedAt;
+    public String getNotiContents() {
+        return notiContents;
     }
 
-    public void setUpdatedAt(LocalDateTime updatedAt) {
-        this.updatedAt = updatedAt;
+    public void setNotiContents(String notiContents) {
+        this.notiContents = notiContents;
+    }
+
+    public LocalDateTime getNotiCreateAt() {
+        return notiCreateAt;
+    }
+
+    public void setNotiCreateAt(LocalDateTime notiCreateAt) {
+        this.notiCreateAt = notiCreateAt;
+    }
+
+    public LocalDateTime getNotiStartDate() {
+        return notiStartDate;
+    }
+
+    public void setNotiStartDate(LocalDateTime notiStartDate) {
+        this.notiStartDate = notiStartDate;
+    }
+
+    public LocalDateTime getNotiCloseDate() {
+        return notiCloseDate;
+    }
+
+    public void setNotiCloseDate(LocalDateTime notiCloseDate) {
+        this.notiCloseDate = notiCloseDate;
+    }
+
+    public LocalDateTime getNotiModiDate() {
+        return notiModiDate;
+    }
+
+    public void setNotiModiDate(LocalDateTime notiModiDate) {
+        this.notiModiDate = notiModiDate;
     }
 }

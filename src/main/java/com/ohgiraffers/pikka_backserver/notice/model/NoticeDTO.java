@@ -4,71 +4,101 @@ import java.time.LocalDateTime;
 
 public class NoticeDTO {
 
-    private Integer noticeId;
-    private String title;
-    private String content;
-    private LocalDateTime createdAt;
-    private LocalDateTime updatedAt;
+    private Integer notiId;
+    private Integer adminId;
+    private String adminName;
+    private String notiTitle;
+    private String notiContents;
+    private LocalDateTime notiCreateAt;
+    private LocalDateTime notiStartDate;
+    private LocalDateTime notiCloseDate;
+    private LocalDateTime notiModiDate;
 
-    public NoticeDTO() {
+    public NoticeDTO() {}
+
+    public NoticeDTO(Integer notiId, Integer adminId, String adminName, String notiTitle, String notiContents,
+                     LocalDateTime notiCreateAt, LocalDateTime notiStartDate, LocalDateTime notiCloseDate,
+                     LocalDateTime notiModiDate) {
+        this.notiId = notiId;
+        this.adminId = adminId;
+        this.adminName = adminName;
+        this.notiTitle = notiTitle;
+        this.notiContents = notiContents;
+        this.notiCreateAt = notiCreateAt;
+        this.notiStartDate = notiStartDate;
+        this.notiCloseDate = notiCloseDate;
+        this.notiModiDate = notiModiDate;
     }
 
-    public NoticeDTO(Integer noticeId, String title, String content, LocalDateTime createdAt, LocalDateTime updatedAt) {
-        this.noticeId = noticeId;
-        this.title = title;
-        this.content = content;
-        this.createdAt = createdAt;
-        this.updatedAt = updatedAt;
+    public Integer getNotiId() {
+        return notiId;
     }
 
-    public Integer getNoticeId() {  // 변경됨: getId -> getNoticeId
-        return noticeId;
+    public void setNotiId(Integer notiId) {
+        this.notiId = notiId;
     }
 
-    public void setNoticeId(Integer id) {  // 변경됨: setId -> setNoticeId
-        this.noticeId = id;
+    public Integer getAdminId() {
+        return adminId;
     }
 
-    public String getTitle() {
-        return title;
+    public void setAdminId(Integer adminId) {
+        this.adminId = adminId;
     }
 
-    public void setTitle(String title) {
-        this.title = title;
+    public String getAdminName() {
+        return adminName;
     }
 
-    public String getContent() {
-        return content;
+    public void setAdminName(String adminName) {
+        this.adminName = adminName;
     }
 
-    public void setContent(String content) {
-        this.content = content;
+    public String getNotiTitle() {
+        return notiTitle;
     }
 
-    public LocalDateTime getCreatedAt() {
-        return createdAt;
+    public void setNotiTitle(String notiTitle) {
+        this.notiTitle = notiTitle;
     }
 
-    public void setCreatedAt(LocalDateTime createdAt) {
-        this.createdAt = createdAt;
+    public String getNotiContents() {
+        return notiContents;
     }
 
-    public LocalDateTime getUpdatedAt() {
-        return updatedAt;
+    public void setNotiContents(String notiContents) {
+        this.notiContents = notiContents;
     }
 
-    public void setUpdatedAt(LocalDateTime updatedAt) {
-        this.updatedAt = updatedAt;
+    public LocalDateTime getNotiCreateAt() {
+        return notiCreateAt;
     }
 
-    @Override
-    public String toString() {
-        return "NoticeDTO{" +
-                "noticeId=" + noticeId +  // 변경됨: id -> noticeId
-                ", title='" + title + '\'' +
-                ", content='" + content + '\'' +
-                ", createdAt=" + createdAt +
-                ", updatedAt=" + updatedAt +
-                '}';
+    public void setNotiCreateAt(LocalDateTime notiCreateAt) {
+        this.notiCreateAt = notiCreateAt;
+    }
+
+    public LocalDateTime getNotiStartDate() {
+        return notiStartDate;
+    }
+
+    public void setNotiStartDate(LocalDateTime notiStartDate) {
+        this.notiStartDate = notiStartDate;
+    }
+
+    public LocalDateTime getNotiCloseDate() {
+        return notiCloseDate;
+    }
+
+    public void setNotiCloseDate(LocalDateTime notiCloseDate) {
+        this.notiCloseDate = notiCloseDate;
+    }
+
+    public LocalDateTime getNotiModiDate() {
+        return notiModiDate;
+    }
+
+    public void setNotiModiDate(LocalDateTime notiModiDate) {
+        this.notiModiDate = notiModiDate;
     }
 }
