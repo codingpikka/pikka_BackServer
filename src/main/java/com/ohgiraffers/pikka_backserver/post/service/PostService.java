@@ -7,11 +7,10 @@ import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
 import java.util.Map;
 import java.util.Objects;
-import java.util.stream.Collectors;
 
+// 확인
 @Service
 public class PostService {
 
@@ -27,8 +26,8 @@ public class PostService {
         PostEntity postEntity = new PostEntity();
         postEntity.setId(postDTO.getId());
         postEntity.setTitle(postDTO.getTitle());
-        postEntity.setThumbnail(postDTO.getThumbnail());
         postEntity.setContent(postDTO.getContent());
+        postEntity.setThumbnail(postDTO.getThumbnail());
 
         PostEntity savedPostEntity = postRepository.save(postEntity);
 
@@ -38,19 +37,5 @@ public class PostService {
         }else {
             return Map.of("postId", savedPostEntity.getId());
         }
-    }
-
-    public List<PostDTO> getAllPosts() {
-        List<PostEntity> posts = postRepository.findAll();
-        return posts.stream()
-                .map(post -> {
-                    PostDTO dto = new PostDTO();
-                    dto.setId(post.getId());
-                    dto.setTitle(post.getTitle());
-                    dto.setThumbnail(post.getThumbnail());
-                    dto.setContent(post.getContent());
-                    return dto;
-                })
-                .collect(Collectors.toList());
     }
 }

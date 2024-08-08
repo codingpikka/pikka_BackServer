@@ -15,16 +15,13 @@ public class QuestionsService {
     @Autowired
     private QuestionsRepository questionsRepository;
 
-    // 기존 메서드 유지
+    //    public List<QuestionsDTO> getAllQuestions(){
+//        return questionsRepository.findAll().stream()
+//                .map(this::convertToDTO)
+//                .collect(Collectors.toList());
+//    }
     public List<QuestionsEntity> getAllQuestions() {
         return questionsRepository.findAll();
-    }
-
-    // 새로운 메서드 추가
-    public List<QuestionsDTO> getAllQuestionsDTO() {
-        return questionsRepository.findAll().stream()
-                .map(this::convertToDTO)
-                .collect(Collectors.toList());
     }
 
     public QuestionsDTO getQuestionById(Long contactId){
@@ -32,8 +29,11 @@ public class QuestionsService {
         return convertToDTO(questionsEntity);
     }
 
+    // 새로운 질문을 저장하는 메서드 추가
     public QuestionsEntity addQuestion(QuestionsDTO questionsDTO) {
+//        QuestionsEntity questionsEntity = convertToEntity(questionsDTO);
         QuestionsEntity questionsEntity = new QuestionsEntity();
+
         questionsEntity.setContactId(questionsDTO.getContactId());
         questionsEntity.setUserId(questionsDTO.getUserId());
         questionsEntity.setUserName(questionsDTO.getUserName());
@@ -47,6 +47,8 @@ public class QuestionsService {
         questionsEntity.setResponsePostedDate(questionsDTO.getResponsePostedDate());
         questionsEntity.setResponseStatus(questionsDTO.getResponseStatus());
         questionsEntity.setAnswerContent(questionsDTO.getAnswerContent());
+        QuestionsEntity savedEntity = questionsRepository.save(questionsEntity);
+//        return convertToDTO(savedEntity);
         return questionsRepository.save(questionsEntity);
     }
 
