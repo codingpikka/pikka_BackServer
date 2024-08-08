@@ -20,11 +20,11 @@ public class QuestionsController {
     }
 
     // 관리자용 엔드포인트
-//    @GetMapping("/insert/qna-list")
-//    public ResponseEntity<List<QuestionsDTO>> getAllQna(){
-//        List<QuestionsDTO> qnaList = questionsService.getAllQuestions();
-//        return ResponseEntity.ok(qnaList);
-//    }
+    @GetMapping("/insert/qna-list")
+    public ResponseEntity<List<QuestionsDTO>> getAllQna(){
+        List<QuestionsDTO> qnaList = questionsService.getAllQuestionsDTO();
+        return ResponseEntity.ok(qnaList);
+    }
 
     @GetMapping("/insert/qna-list/{contactId}")
     public ResponseEntity<QuestionsDTO> getQnaById(@PathVariable("contactId") Long contactId){
