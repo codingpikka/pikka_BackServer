@@ -15,10 +15,13 @@ public class QuestionsService {
     @Autowired
     private QuestionsRepository questionsRepository;
 
-    public List<QuestionsDTO> getAllQuestions(){
-        return questionsRepository.findAll().stream()
-                .map(this::convertToDTO)
-                .collect(Collectors.toList());
+    //    public List<QuestionsDTO> getAllQuestions(){
+//        return questionsRepository.findAll().stream()
+//                .map(this::convertToDTO)
+//                .collect(Collectors.toList());
+//    }
+    public List<QuestionsEntity> getAllQuestions() {
+        return questionsRepository.findAll();
     }
 
     public QuestionsDTO getQuestionById(Long contactId){
@@ -27,10 +30,26 @@ public class QuestionsService {
     }
 
     // 새로운 질문을 저장하는 메서드 추가
-    public QuestionsDTO addQuestion(QuestionsDTO questionsDTO) {
-        QuestionsEntity questionsEntity = convertToEntity(questionsDTO);
+    public QuestionsEntity addQuestion(QuestionsDTO questionsDTO) {
+//        QuestionsEntity questionsEntity = convertToEntity(questionsDTO);
+        QuestionsEntity questionsEntity = new QuestionsEntity();
+
+        questionsEntity.setContactId(questionsDTO.getContactId());
+        questionsEntity.setUserId(questionsDTO.getUserId());
+        questionsEntity.setUserName(questionsDTO.getUserName());
+        questionsEntity.setContactType(questionsDTO.getContactType());
+        questionsEntity.setContactContents(questionsDTO.getContactContents());
+        questionsEntity.setContactPostedDate(questionsDTO.getContactPostedDate());
+        questionsEntity.setAdminId(questionsDTO.getAdminId());
+        questionsEntity.setAdminName(questionsDTO.getAdminName());
+        questionsEntity.setResponseTitle(questionsDTO.getResponseTitle());
+        questionsEntity.setResponseContents(questionsDTO.getResponseContents());
+        questionsEntity.setResponsePostedDate(questionsDTO.getResponsePostedDate());
+        questionsEntity.setResponseStatus(questionsDTO.getResponseStatus());
+        questionsEntity.setAnswerContent(questionsDTO.getAnswerContent());
         QuestionsEntity savedEntity = questionsRepository.save(questionsEntity);
-        return convertToDTO(savedEntity);
+//        return convertToDTO(savedEntity);
+        return questionsRepository.save(questionsEntity);
     }
 
     public QuestionsDTO submitAnswer(Long contactId, QuestionsDTO questionsDTO) {

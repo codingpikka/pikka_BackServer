@@ -1,8 +1,10 @@
 package com.ohgiraffers.pikka_backserver.questions.controller;
 
+import com.ohgiraffers.pikka_backserver.questions.entity.QuestionsEntity;
 import com.ohgiraffers.pikka_backserver.questions.model.QuestionsDTO;
 import com.ohgiraffers.pikka_backserver.questions.service.QuestionsService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -18,11 +20,11 @@ public class QuestionsController {
     }
 
     // 관리자용 엔드포인트
-    @GetMapping("/insert/qna-list")
-    public ResponseEntity<List<QuestionsDTO>> getAllQna(){
-        List<QuestionsDTO> qnaList = questionsService.getAllQuestions();
-        return ResponseEntity.ok(qnaList);
-    }
+//    @GetMapping("/insert/qna-list")
+//    public ResponseEntity<List<QuestionsDTO>> getAllQna(){
+//        List<QuestionsDTO> qnaList = questionsService.getAllQuestions();
+//        return ResponseEntity.ok(qnaList);
+//    }
 
     @GetMapping("/insert/qna-list/{contactId}")
     public ResponseEntity<QuestionsDTO> getQnaById(@PathVariable("contactId") Long contactId){
@@ -44,8 +46,16 @@ public class QuestionsController {
 
     // 유저용 엔드포인트
     @PostMapping("/inquiry")
-    public ResponseEntity<QuestionsDTO> createUserQuestion(@RequestBody QuestionsDTO questionsDTO) {
-        QuestionsDTO createdQuestion = questionsService.addQuestion(questionsDTO);
-        return ResponseEntity.ok(createdQuestion);
+    public ResponseEntity<String> createUserQuestion(@RequestBody QuestionsDTO questionsDTO) {
+        System.out.println("Received data1: " + questionsDTO);
+        questionsService.addQuestion(questionsDTO);
+        return ResponseEntity.status(HttpStatus.CREATED).body("Data posted successfully");
+    }
+
+    @GetMapping("/inquiry")
+    public ResponseEntity<List<QuestionsEntity>> getInquiry(){
+        List<QuestionsEntity> questions = questionsService.getAllQuestions();
+        System.out.println("Received data2: " + questions);
+        return ResponseEntity.ok(questions);
     }
 }
