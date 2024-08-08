@@ -1,27 +1,32 @@
 package com.ohgiraffers.pikka_backserver.notice.model;
 
-import java.time.LocalDateTime;
-
 public class NoticeDTO {
 
     private Integer notiId;
-    private Integer adminId;
-    private String adminName;
+    private Integer notiAdminId;
+    private String notiAdminName;
     private String notiTitle;
     private String notiContents;
-    private LocalDateTime notiCreateAt;
-    private LocalDateTime notiStartDate;
-    private LocalDateTime notiCloseDate;
-    private LocalDateTime notiModiDate;
 
+//    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm:ss")
+    private String notiCreateAt;
+
+//    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm:ss")
+    private String notiStartDate;
+
+//    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm:ss")
+    private String notiCloseDate;
+
+//    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm:ss")
+    private String notiModiDate;
+
+    // Constructors
     public NoticeDTO() {}
 
-    public NoticeDTO(Integer notiId, Integer adminId, String adminName, String notiTitle, String notiContents,
-                     LocalDateTime notiCreateAt, LocalDateTime notiStartDate, LocalDateTime notiCloseDate,
-                     LocalDateTime notiModiDate) {
+    public NoticeDTO(Integer notiId, Integer notiAdminId, String notiAdminName, String notiTitle, String notiContents, String notiCreateAt, String notiStartDate, String notiCloseDate, String notiModiDate) {
         this.notiId = notiId;
-        this.adminId = adminId;
-        this.adminName = adminName;
+        this.notiAdminId = notiAdminId;
+        this.notiAdminName = notiAdminName;
         this.notiTitle = notiTitle;
         this.notiContents = notiContents;
         this.notiCreateAt = notiCreateAt;
@@ -38,20 +43,20 @@ public class NoticeDTO {
         this.notiId = notiId;
     }
 
-    public Integer getAdminId() {
-        return adminId;
+    public Integer getNotiAdminId() {
+        return notiAdminId;
     }
 
-    public void setAdminId(Integer adminId) {
-        this.adminId = adminId;
+    public void setNotiAdminId(Integer notiAdminId) {
+        this.notiAdminId = notiAdminId;
     }
 
-    public String getAdminName() {
-        return adminName;
+    public String getNotiAdminName() {
+        return notiAdminName;
     }
 
-    public void setAdminName(String adminName) {
-        this.adminName = adminName;
+    public void setNotiAdminName(String notiAdminName) {
+        this.notiAdminName = notiAdminName;
     }
 
     public String getNotiTitle() {
@@ -70,35 +75,50 @@ public class NoticeDTO {
         this.notiContents = notiContents;
     }
 
-    public LocalDateTime getNotiCreateAt() {
+    public String getNotiCreateAt() {
         return notiCreateAt;
     }
 
-    public void setNotiCreateAt(LocalDateTime notiCreateAt) {
+    public void setNotiCreateAt(String notiCreateAt) {
         this.notiCreateAt = notiCreateAt;
     }
 
-    public LocalDateTime getNotiStartDate() {
+    public String getNotiStartDate() {
         return notiStartDate;
     }
 
-    public void setNotiStartDate(LocalDateTime notiStartDate) {
+    public void setNotiStartDate(String notiStartDate) {
         this.notiStartDate = notiStartDate;
     }
 
-    public LocalDateTime getNotiCloseDate() {
+    public String getNotiCloseDate() {
         return notiCloseDate;
     }
 
-    public void setNotiCloseDate(LocalDateTime notiCloseDate) {
+    public void setNotiCloseDate(String notiCloseDate) {
         this.notiCloseDate = notiCloseDate;
     }
 
-    public LocalDateTime getNotiModiDate() {
+    public String getNotiModiDate() {
         return notiModiDate;
     }
 
-    public void setNotiModiDate(LocalDateTime notiModiDate) {
+    public void setNotiModiDate(String notiModiDate) {
         this.notiModiDate = notiModiDate;
+    }
+
+    @Override
+    public String toString() {
+        return "NoticeDTO{" +
+                "notiId=" + notiId +
+                ", notiAdminId=" + notiAdminId +
+                ", notiAdminName='" + notiAdminName + '\'' +
+                ", notiTitle='" + notiTitle + '\'' +
+                ", notiContents='" + notiContents + '\'' +
+                ", notiCreateAt='" + notiCreateAt + '\'' +
+                ", notiStartDate='" + notiStartDate + '\'' +
+                ", notiCloseDate='" + notiCloseDate + '\'' +
+                ", notiModiDate='" + notiModiDate + '\'' +
+                '}';
     }
 }

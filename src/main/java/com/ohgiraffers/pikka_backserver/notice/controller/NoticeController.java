@@ -2,6 +2,8 @@ package com.ohgiraffers.pikka_backserver.notice.controller;
 
 import com.ohgiraffers.pikka_backserver.notice.model.NoticeDTO;
 import com.ohgiraffers.pikka_backserver.notice.service.NoticeService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -9,8 +11,10 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/notice")
+@RequestMapping("/api/notice")
 public class NoticeController {
+
+    private static final Logger logger = LoggerFactory.getLogger(NoticeController.class);
 
     private final NoticeService noticeService;
 
@@ -21,28 +25,41 @@ public class NoticeController {
 
     @GetMapping
     public ResponseEntity<List<NoticeDTO>> getAllNotices() {
-        return ResponseEntity.ok(noticeService.getAllNotices());
+        logger.info("Retrieving all notices");
+        return noticeService.getAllNotices();
     }
 
     @GetMapping("/{id}")
     public ResponseEntity<NoticeDTO> getNotice(@PathVariable Integer id) {
-        return ResponseEntity.ok(noticeService.getNotice(id));
+        logger.info("Retrieving notice with ID: {}", id);
+        return noticeService.getNotice(id);
     }
 
     @PostMapping
     public ResponseEntity<NoticeDTO> createNotice(@RequestBody NoticeDTO noticeDTO) {
-        return ResponseEntity.ok(noticeService.createNotice(noticeDTO));
+        logger.info("Creating new notice: {}", noticeDTO);
+        return noticeService.createNotice(noticeDTO);
     }
 
     @PutMapping("/{id}")
     public ResponseEntity<NoticeDTO> updateNotice(@PathVariable Integer id, @RequestBody NoticeDTO noticeDTO) {
-        return ResponseEntity.ok(noticeService.updateNotice(id, noticeDTO));
+        logger.info("Updating notice with ID: {}", id);
+        return noticeService.updateNotice(id, noticeDTO);
     }
 
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> deleteNotice(@PathVariable Integer id) {
-        noticeService.deleteNotice(id);
-        return ResponseEntity.ok().build();
+        try {
+            logger.info("Received delete request for notice ID: {}", id);
+            ResponseEntity<Void> response = noticeService.deleteNotice(id);
+            logger.info("Delete operation completed for notice ID: {}", id);
+            return response;
+        } catch (IllegalArgumentException e) {
+            logger.error("Invalid notice ID: {}", id, e);
+            return ResponseEntity.badRequest().build();
+        } catch (Exception e) {
+            logger.error("Error deleting notice with ID: {}", id, e);
+            return ResponseEntity.internalServerError().build();
+        }
     }
-    //테스트용
 }
