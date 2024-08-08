@@ -1,22 +1,26 @@
 package com.ohgiraffers.pikka_backserver.notice.entity;
 
 import jakarta.persistence.*;
+
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 @Entity
 @Table(name = "tbl_notification")
 public class NoticeEntity {
+
+    private static final DateTimeFormatter DATE_FORMATTER = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "noti_id")
     private Integer notiId;
 
-    @Column(name = "admin_id")
-    private Integer adminId;
+    @Column(name = "noti_admin_id")
+    private Integer notiAdminId;
 
-    @Column(name = "admin_name")
-    private String adminName;
+    @Column(name = "noti_admin_name")
+    private String notiAdminName;
 
     @Column(name = "noti_title", nullable = false)
     private String notiTitle;
@@ -25,32 +29,34 @@ public class NoticeEntity {
     private String notiContents;
 
     @Column(name = "noti_createat", nullable = false)
-    private LocalDateTime notiCreateAt;
+    private String notiCreateAt;
 
     @Column(name = "noti_start_date")
-    private LocalDateTime notiStartDate;
+    private String notiStartDate;
 
     @Column(name = "noti_close_date")
-    private LocalDateTime notiCloseDate;
+    private String notiCloseDate;
 
     @Column(name = "noti_modi_date")
-    private LocalDateTime notiModiDate;
+    private String notiModiDate;
 
-    public NoticeEntity() {}
-
-    public NoticeEntity(Integer notiId, Integer adminId, String adminName, String notiTitle, String notiContents,
-                        LocalDateTime notiCreateAt, LocalDateTime notiStartDate, LocalDateTime notiCloseDate,
-                        LocalDateTime notiModiDate) {
-        this.notiId = notiId;
-        this.adminId = adminId;
-        this.adminName = adminName;
-        this.notiTitle = notiTitle;
-        this.notiContents = notiContents;
-        this.notiCreateAt = notiCreateAt;
-        this.notiStartDate = notiStartDate;
-        this.notiCloseDate = notiCloseDate;
-        this.notiModiDate = notiModiDate;
+    public NoticeEntity() {
+        this.notiCreateAt = LocalDateTime.now().format(DATE_FORMATTER);
     }
+
+    @PrePersist
+    public void prePersist() {
+        if (this.notiCreateAt == null || this.notiCreateAt.isEmpty()) {
+            this.notiCreateAt = LocalDateTime.now().format(DATE_FORMATTER);
+        }
+    }
+
+    @PreUpdate
+    public void preUpdate() {
+        this.notiModiDate = LocalDateTime.now().format(DATE_FORMATTER);
+    }
+
+    // Getters and setters
 
     public Integer getNotiId() {
         return notiId;
@@ -60,20 +66,20 @@ public class NoticeEntity {
         this.notiId = notiId;
     }
 
-    public Integer getAdminId() {
-        return adminId;
+    public Integer getNotiAdminId() {
+        return notiAdminId;
     }
 
-    public void setAdminId(Integer adminId) {
-        this.adminId = adminId;
+    public void setNotiAdminId(Integer notiAdminId) {
+        this.notiAdminId = notiAdminId;
     }
 
-    public String getAdminName() {
-        return adminName;
+    public String getNotiAdminName() {
+        return notiAdminName;
     }
 
-    public void setAdminName(String adminName) {
-        this.adminName = adminName;
+    public void setNotiAdminName(String notiAdminName) {
+        this.notiAdminName = notiAdminName;
     }
 
     public String getNotiTitle() {
@@ -92,35 +98,52 @@ public class NoticeEntity {
         this.notiContents = notiContents;
     }
 
-    public LocalDateTime getNotiCreateAt() {
+    public String getNotiCreateAt() {
         return notiCreateAt;
     }
 
-    public void setNotiCreateAt(LocalDateTime notiCreateAt) {
-        this.notiCreateAt = notiCreateAt;
+    public void setNotiCreateAt(String notiCreateAt) {
+        this.notiCreateAt = (notiCreateAt == null || notiCreateAt.isEmpty())
+                ? LocalDateTime.now().format(DATE_FORMATTER)
+                : notiCreateAt;
     }
 
-    public LocalDateTime getNotiStartDate() {
+    public String getNotiStartDate() {
         return notiStartDate;
     }
 
-    public void setNotiStartDate(LocalDateTime notiStartDate) {
+    public void setNotiStartDate(String notiStartDate) {
         this.notiStartDate = notiStartDate;
     }
 
-    public LocalDateTime getNotiCloseDate() {
+    public String getNotiCloseDate() {
         return notiCloseDate;
     }
 
-    public void setNotiCloseDate(LocalDateTime notiCloseDate) {
+    public void setNotiCloseDate(String notiCloseDate) {
         this.notiCloseDate = notiCloseDate;
     }
 
-    public LocalDateTime getNotiModiDate() {
+    public String getNotiModiDate() {
         return notiModiDate;
     }
 
-    public void setNotiModiDate(LocalDateTime notiModiDate) {
+    public void setNotiModiDate(String notiModiDate) {
         this.notiModiDate = notiModiDate;
+    }
+
+    @Override
+    public String toString() {
+        return "NoticeEntity{" +
+                "notiId=" + notiId +
+                ", notiAdminId=" + notiAdminId +
+                ", notiAdminName='" + notiAdminName + '\'' +
+                ", notiTitle='" + notiTitle + '\'' +
+                ", notiContents='" + notiContents + '\'' +
+                ", notiCreateAt='" + notiCreateAt + '\'' +
+                ", notiStartDate='" + notiStartDate + '\'' +
+                ", notiCloseDate='" + notiCloseDate + '\'' +
+                ", notiModiDate='" + notiModiDate + '\'' +
+                '}';
     }
 }
