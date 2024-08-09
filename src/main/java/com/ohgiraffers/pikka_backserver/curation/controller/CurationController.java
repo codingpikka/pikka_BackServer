@@ -22,8 +22,10 @@ public class CurationController {
 
     @GetMapping
     public ResponseEntity<List<JobEntity>> getAllItems() {
-        List<JobEntity> items = service.findAll();
-        return new ResponseEntity<>(items, HttpStatus.OK);
+        List<JobEntity> items = service.findCuration();
+
+        return ResponseEntity.ok(items);
+
     }
 
     @GetMapping("/{id}")

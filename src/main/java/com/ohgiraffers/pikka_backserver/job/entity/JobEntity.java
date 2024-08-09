@@ -127,6 +127,6 @@ public class JobEntity {
                 ", jobEmploymentType='" + jobEmploymentType + '\'' +
                 ", jobWebInfoUrl='" + jobWebInfoUrl + '\'' +
                 ", jobMobileInfoUrl='" + jobMobileInfoUrl + '\'' +
-                '}';
+                '}'+'\n';
     }
 }
